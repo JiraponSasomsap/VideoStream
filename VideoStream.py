@@ -2,7 +2,7 @@ import cv2
 import threading
 import time
 
-class VideoStream2:
+class VideoStream:
     def __init__(self, source, lock_fps=-1):
         self.source = source
         self.is_running = False
@@ -74,7 +74,7 @@ class VideoStream2:
         self.is_running = False
     
 class _GetVideoStream:
-    def __init__(self, instance:VideoStream2):
+    def __init__(self, instance:VideoStream):
         self._videoStream = instance
     
     def get_cam_fps(self):
@@ -105,7 +105,7 @@ class _GetVideoStream:
 if __name__ == '__main__':
     import numpy as np
     video_source = r"C:\Users\JiraponSasomsap\ArticulusProjects\projects\EGAT\EGAT_Demo\videos\EGAT_test.mp4"
-    stream = VideoStream2(video_source, 1)
+    stream = VideoStream(video_source, 1)
     streaming = stream.start()
     frame_tmp = None
     while stream.is_running:
